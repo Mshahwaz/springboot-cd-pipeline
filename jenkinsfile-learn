@@ -1,0 +1,38 @@
+pipeline{
+    agent{
+        label 'build'
+    }
+    parameters{
+        string(name: 'IMAGETAG', defaultValue: '1', description: 'Please Enter Image Tag to Deploy')
+    }
+    stages{
+        stage( 'Code Chekout' ){
+            steps{
+                git branch: 'main', credentialsId: 'GithubCred' ,url: 'https://github.com/Mshahwaz/springboot-cd-pipeline.git'
+            }
+        }
+        stage( 'STAGE I: Updating Manifest Files' ){
+            steps{
+                dir("./kubernetes"){
+                    sh "sed -i 's|image: shahwaz131/springboot:*|image: shahwaz131/springboot:$IMAGETAG|g' deployment.yml"
+                }
+            }
+        }
+        stage( 'STAGE II: Approval For deployment'){
+            steps{
+                timeout(time: 10, unit: "MINUTES") {
+                    input message: "Do you approve deployment?", ok: "Deploy"
+                }
+            }
+        }
+        stage( 'STAGE III: Deploy'){
+            steps{
+                echo "Initiating deployment"
+                 sh 'git commit -a -m "New deployment for Build $IMAGETAG"'
+                 withCredentials([usernamePassword(credentialsId: 'GithubCred', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                    sh "git push https://$GIT_USER:$GIT_PASS@github.com/$GIT_USER/springboot-cd-pipeline.git"
+                 }
+            }
+        }
+    }
+}

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wezvatechdemo
+  name: springboot-app-service
   labels:
-    app: wezvatechdemo
+    app: springboot-app
 spec:
   type: NodePort
   ports:
@@ -11,4 +11,4 @@ spec:
     targetPort: 8080
     nodePort: 31000
   selector:
-    app: wezvatechdemo
+    app: springboot-app

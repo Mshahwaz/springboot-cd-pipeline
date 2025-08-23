@@ -14,7 +14,7 @@ pipeline{
         stage( 'STAGE I: Updating Manifest Files' ){
             steps{
                 dir("./kubernetes"){
-                    sh "sed -i 's|image: shahwaz131/springboot:*|image: shahwaz131/springboot:$IMAGETAG|g' deployment.yml"
+                    sh "sed -i 's|image: shahwaz131/springboot:*|image: shahwaz131/springboot:${IMAGETAG}|g' deployment.yml"
                 }
             }
         }

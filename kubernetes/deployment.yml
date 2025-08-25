@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: springboot-app
+  namespace: default
   labels:
     app: springboot-app
 spec:
@@ -19,3 +20,4 @@ spec:
         image: shahwaz131/springboot:latest
         ports:
         - containerPort: 8080
+

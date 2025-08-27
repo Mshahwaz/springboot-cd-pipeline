@@ -40,7 +40,7 @@ $ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.23.2/min
 
  Start Minikube
 $  sudo apt install conntrack ----> Only if you run minikube on bare metal
-$  minikube start --vm-driver=docker --ports=32000:32000, 31000:31000 ## 1-for ArgoCD Server and 1-for          springboot-Application
+$  minikube start --vm-driver=docker --ports=32000:32000,31000:31000 ## 1-for ArgoCD Server and 1-for          springboot-Application
 ```
 
 ## Setup ArgoCD

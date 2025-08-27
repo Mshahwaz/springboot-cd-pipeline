@@ -46,7 +46,7 @@ $  minikube start --vm-driver=docker --ports=32000:32000,31000:31000 ## 1-for Ar
 ## Setup ArgoCD
 ```
 $ kubectl create namespace argocd
-$ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+$ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.5.8/manifests/install.yaml
 $ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort","ports": [{"name": "http","port": 80,"targetPort": 8080,"nodePort": 32000}]}}' 
 
 For version 1.9 or later:( to get initial admin password)

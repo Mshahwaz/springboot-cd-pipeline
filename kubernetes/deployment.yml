@@ -6,7 +6,7 @@ metadata:
   labels:
     app: springboot-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: springboot-app
@@ -20,4 +20,5 @@ spec:
         image: shahwaz131/springboot:1
         ports:
         - containerPort: 8080
+
 
